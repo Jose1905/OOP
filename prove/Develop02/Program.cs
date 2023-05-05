@@ -11,7 +11,7 @@ class Program
         prompts.Add("What was the strongest emotion I felt today?");
         prompts.Add("If I had one thing I could do over today, what would it be?");
 
-        List<Entry> entryList = new List<Entry>();
+        Journal newJournal = new Journal();
 
         //Program loop
         string choice = "";
@@ -40,12 +40,12 @@ class Program
                 DateTime currentDateTime = DateTime.Now;
                 newEntry._date = currentDateTime.ToShortDateString();
 
-                entryList.Add(newEntry);
+                newJournal._entryList.Add(newEntry);
             }
 
             else if (choice == "2")
             {
-                foreach (Entry e in entryList)
+                foreach (Entry e in newJournal._entryList)
             {
                 e.DisplayAnswer();
             } 
@@ -53,30 +53,32 @@ class Program
 
             else if (choice == "3")
             {
-                entryList.Clear();
-                Console.WriteLine("What is the name of the document?");
-                string docName = Console.ReadLine();
-                string[] lines = System.IO.File.ReadAllLines(docName);
+                newJournal._entryList.Clear();
+                newJournal.ReadFile();
+                // Console.WriteLine("What is the name of the document?");
+                // string docName = Console.ReadLine();
+                // string[] lines = System.IO.File.ReadAllLines(docName);
 
-                foreach (string line in lines)
-                {
-                    string[] parts = line.Split(",");
-                    Entry readEntry = new Entry();
-                    readEntry._prompt = parts[0];
-                    readEntry._answer = parts[1];
-                    readEntry._date = parts[2];
+                // foreach (string line in lines)
+                // {
+                //     string[] parts = line.Split(",");
+                //     Entry readEntry = new Entry();
+                //     readEntry._prompt = parts[0];
+                //     readEntry._answer = parts[1];
+                //     readEntry._date = parts[2];
 
-                    entryList.Add(readEntry);
-                }
+                //     entryList.Add(readEntry);
+                // }
             }
 
             else if (choice == "4")
             {
+                newJournal.SaveFile();
                 
-                Console.WriteLine("What is the name of the document?");
-                string docName = Console.ReadLine();
-                SaveFile(docName, entryList);
-                Console.WriteLine($"Document saved under the name {docName}");
+                // Console.WriteLine("What is the name of the document?");
+                // string docName = Console.ReadLine();
+                // SaveFile(docName, newJournal._entryList);
+                // Console.WriteLine($"Document saved under the name {docName}");
             }
 
             else if (choice != "5")
@@ -100,14 +102,14 @@ class Program
         }
     }    
 
-    public static void SaveFile(string fileName, List<Entry> entryList)
-    {
-        using (StreamWriter outputFile = new StreamWriter(fileName))
-        {
-            foreach (Entry e in entryList)
-            {
-                outputFile.WriteLine($"{e._prompt},{e._answer},{e._date}");
-            }            
-        }
-    }
+    // public static void SaveFile(string fileName, List<Entry> entryList)
+    // {
+    //     using (StreamWriter outputFile = new StreamWriter(fileName))
+    //     {
+    //         foreach (Entry e in entryList)
+    //         {
+    //             outputFile.WriteLine($"{e._prompt},{e._answer},{e._date}");
+    //         }            
+    //     }
+    // }
 }

@@ -65,7 +65,7 @@ class Reference
     }
 
     public void HideWords(){
-        _text.HideWords(+_wordsPerTurn);
+        _text.HideWords(_wordsPerTurn);
     }
 
     public bool CheckEmptyText(){

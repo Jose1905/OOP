@@ -1,0 +1,4 @@
+900
+1,Give a talk,Give a speech in Sacrament meeting when asked to,100,True
+2,Read the scriptures,Read at least one chapter of the scriptures,50,False
+3,Attend the Temple,Perform ordinances in the Temple,100,True,3,3,500

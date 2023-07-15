@@ -3,7 +3,7 @@ class Weather
     private string _weatherName;
     private int _turnsLeft;
 
-    public Weather(string weatherName, int turnsLeft){
+    public Weather(string weatherName){
         _weatherName = weatherName;
         _turnsLeft = 5;
     }

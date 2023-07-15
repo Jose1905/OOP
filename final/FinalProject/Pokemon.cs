@@ -1,13 +1,14 @@
 class Pokemon
 {
     protected string _pokemonName;
-    // protected List<Attack> _attackList;
+    protected List<Attack> _attackList;
     protected Status _status;
     protected string _pokemonType;
 
-    public Pokemon(string pokemonName, string pokemonType){
+    public Pokemon(string pokemonName){
         _pokemonName = pokemonName;
-        _pokemonType = pokemonType;
+        _attackList = new List<Attack>();
+        _status = new Status("Ok");
     }
 
     public string GetPokemonName(){
@@ -18,6 +19,15 @@ class Pokemon
         _pokemonName = pokemonName;
     }
 
+    public List<Attack> GetAttackList(){
+        return _attackList;
+    }
+
+    public void AddAttack(string name, string type, float power){
+        Attack attack = new Attack(name, type, power);
+        _attackList.Add(attack);
+    }
+
     public string GetPokemonType(){
         return _pokemonType;
     }
@@ -26,20 +36,31 @@ class Pokemon
         _pokemonType = pokemonType;
     }
 
-    public Status GetStatus(){
-        return _status;
+    public string GetStatus(){
+        return _status.GetStatusName();
     }
 
     public void SetStatus(string statusName){
         _status = new Status(statusName);
     }
 
-    public virtual float CalculateAttackSubtotal(Attack attack){
-        float attack_subtotal = attack.GetPower();
-        if (attack.GetAttackType() == _pokemonType){
-            attack_subtotal = attack_subtotal * Convert.ToSingle(1.5);
+    public virtual float CalculateAttackSubtotal(Attack attack, Weather weather){
+        return attack.GetPower();
+    }
+
+    public string DisplayPokemon(){
+        return $"{_pokemonName}: Type = {_pokemonType}, Status = {_status.GetStatusName()}";
+    }
+
+    public void DisplayAttackList(){
+        Console.WriteLine();
+        if (_attackList.Count() == 0){
+            Console.WriteLine("There are still no attacks added");
         }
-        attack_subtotal = attack_subtotal * _status.GetPowerDecrease();
-        return attack_subtotal;
+        else {        
+            for (int i = 0; i < _attackList.Count(); i++){
+                Console.WriteLine($"{i+1}. {_attackList[i].DisplayAttack()}");
+            }
+        }
     }
 }

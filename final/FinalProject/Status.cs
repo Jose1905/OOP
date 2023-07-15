@@ -27,7 +27,7 @@ class Status
         else if (_statusName == "Frozen" || _statusName == "Asleep"){
             _powerDecrease = Convert.ToSingle(0);
         }
-        else if (_statusName == "Paralyzed"){
+        else if (_statusName == "Paralyzed" || _statusName == "Ok"){
             _powerDecrease = Convert.ToSingle(1);
         }
     }

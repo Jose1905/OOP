@@ -33,4 +33,8 @@ class Attack
     public void SetPower(float power){
         _power = power;
     }
+
+    public string DisplayAttack(){
+        return $"{_attackName}: Type = {_attackType}, Power = {_power}";
+    }
 }

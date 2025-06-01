@@ -21,4 +21,4 @@ This code is written in Python
 # Useful Websites
 
 * [Python official website](https://www.python.org/)
-* [Python OOPs Concepts]([https://www.djangoproject.com/start/](https://www.geeksforgeeks.org/python-oops-concepts/))
+* [Python OOPs Concepts](https://www.djangoproject.com/start/](https://www.geeksforgeeks.org/python-oops-concepts/)
